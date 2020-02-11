@@ -1,0 +1,13 @@
+Version:
+	1.0	01 Mar 2015  -	initial release
+	1.01	07 Mar 2015  -  fixed a bug in the OLED_I2C_3D_Cube example
+	2.00	23 Sep 2018  -	added support for 128x32 pixel displays
+				added getDisplayHeight()
+				added rotateDisplay()
+				added sleepMode()
+				fixed warnings regarding deprecated conversions when using print()
+				removed unused variable declarations
+				changed the way the screen buffer is allocated
+				added more examples and grouped them into 128x32 and 128x64 resolution
+	2.10	09 Feb 2019  -	added support for ESP8266 (only tested on Wemos/Lolin D1 Mini)
+				added support for ESP32 (only tested on Heltec WiFi Kit 32)
