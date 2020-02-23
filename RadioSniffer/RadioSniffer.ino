@@ -242,7 +242,7 @@ void handleInt(){
   if (((duration < minPause)||(duration > maxPause))&&(changeCnt == 0)) return;   //Ждем начальный синхроимпуль
   if ((duration > minPause)&&(duration < maxPause)&&(changeCnt >= 24)){     //похоже на очередной синхроимпульс
     const int delta = duration-abs(keyRawLog[0]);
-    if (abs(delta) < (200 >> prescal)) { // это точно повторный сигнал
+    if (abs(delta) < (350 >> prescal)) { // это точно повторный сигнал
       repeatCnt++;
       if (repeatCnt>=2){
         recieved = true;
