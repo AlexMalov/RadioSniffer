@@ -3,7 +3,7 @@
   Аппаратная часть построена на Arduino Pro Mini 3.3v
   Исходники на GitHub: https://github.com/AlexMalov/RadioSniffer/
   Автор: МЕХАТРОН DIY, AlexMalov, 2020
-  v 1.0
+  v 1.1
 */
 
 #include <EEPROM.h>
