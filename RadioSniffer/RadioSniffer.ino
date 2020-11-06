@@ -221,6 +221,7 @@ String getTypeName(emKeys tp){
     case kP12bt: return F(" Pre 12bit");
     case k12bt: return F(" 12bit");
     case k24bt: return F(" 24bit");
+    case k64bt: return F(" 64bit");
     case kKeeLoq: return F(" KeeLoq");
     case kANmotors64: return F(" ANmotors");
   }
