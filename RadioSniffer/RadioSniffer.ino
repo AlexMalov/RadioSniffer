@@ -294,8 +294,8 @@ bool convert2Key(tpKeyData* kd){
     kd->midlePause[0] = keyRawLog[i-1];      // шаблон средней паузы
     kd->midlePause[1] = keyRawLog[i];
     i++;
-    kd->prePulse[0] = (one[0] << 1) / kd->prePulseLenth;        // шаблон стартовой последовательности
-    kd->prePulse[1] = (one[1] << 1) / kd->prePulseLenth;
+    kd->prePulse[0] = one[0] / ((i - 1) >> 1);  // шаблон стартовой последовательности
+    kd->prePulse[1] = one[1] / ((i - 2) >> 1);
     one[0] = 0; one[1] = 0;
   }
   kd->firstDataIdx = i;
