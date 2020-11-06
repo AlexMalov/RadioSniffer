@@ -1,5 +1,5 @@
 /*
-  Скетч к проекту "Универсальный пульт для шлагаумов и люср RF 433.96MHz / 315MHz с OLED дисплеем и хранением 30 ключей в памяти EEPROM"
+  Скетч к проекту "Универсальный пульт для шлагбаумов и люстр RF 433.96MHz / 315MHz с OLED дисплеем и хранением 30 ключей в памяти EEPROM"
   Аппаратная часть построена на Arduino Pro Mini 3.3v
   Исходники на GitHub: https://github.com/AlexMalov/RadioSniffer/
   Автор: МЕХАТРОН DIY, AlexMalov, 2020
@@ -35,17 +35,17 @@
 GButton btn_ok(Btn_ok_Pin);       // кнопка ОК
 GButton btn_left(Btn_left_Pin);   // кнопка влево
 GButton btn_right(Btn_right_Pin); // кнопка вправо
-OLED myOLED(SDA, SCL); //создаем экземпляр класса OLED с именем myOLED
+OLED myOLED(SDA, SCL);            // создаем экземпляр класса OLED с именем myOLED
 extern uint8_t SmallFont[];
 extern uint8_t BigNumbers[];
 
 volatile bool recieved = false;       //что-то прочиталось
 volatile int keyRawLog[maxDataLog];   // лог переключений максимум 66 bit + 1 sync bit
 volatile byte logLen;                 // фактическая длинна лога
-volatile bool SleepOn = false;        // режим энергосережения
+volatile bool SleepOn = false;        // режим энергосбережения
 
 enum emKeys {kUnknown, kP12bt, k12bt, k24bt, k64bt, kKeeLoq, kANmotors64};    // тип оригинального ключа
-enum emSnifferMode {smdNormal, smdAutoRec, smdAutoRecSilence} snifferMode;          // режим раоы сниффера
+enum emSnifferMode {smdNormal, smdAutoRec, smdAutoRecSilence} snifferMode;    // режим работы сниффера
 
 struct tpKeyRawData{  
   byte keyID[9];            // шифр ключа 12-66 bit
@@ -78,7 +78,7 @@ struct tpKeyData{
 byte maxKeyCount = EEPROM.length() / sizeof(tpKeyData); // максимальное кол-во ключей, которое влазит в EEPROM, но не > 40
 byte EEPROM_key_count;                    // количество ключей 0..maxKeyCount, хранящихся в EEPROM
 byte EEPROM_key_index = 0;                // 1..EEPROM_key_count номер последнего записанного в EEPROM ключа  
-unsigned long stTimer = 0;                // тамер сна
+unsigned long stTimer = 0;                // таймер сна
 
 void OLED_printKey(tpKeyData* kd, byte msgType = 0){
   String st;
@@ -117,7 +117,7 @@ byte indxKeyInROM(tpKeyData* kd){ //возвращает индекс или н�
   bool eq = true; byte* buf = (byte*)kd;
   for (byte j = 1; j<=EEPROM_key_count; j++){  // ищем ключ в eeprom. 
     byte i = 0;
-    if ((kd->type == kKeeLoq) || (kd->type == kANmotors64)) i = 4;  // для эих ключей первая часть кода переменная
+    if ((kd->type == kKeeLoq) || (kd->type == kANmotors64)) i = 4;  // для этих ключей первая часть кода переменная
     for (; i < kd->codeLenth >> 3; i++) 
       if (buf[i] != EEPROM[i+j*sizeof(tpKeyData)]) { eq = false; break;}
     if (eq) return j;
